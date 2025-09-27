@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ตัวแปลงตัวเลขมนุษย์ต่างดาว</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="data:image/svg+xml,
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+  <text y='0.9em' font-size='90'>👽</text>
+</svg>"
+    />
+  </head>
+
+  <body>
+    <div class="floating-pokemon">
+      <img
+        src="assets/images/effects/pikachu_fly.gif"
+        alt="Flying Pikachu"
+        class="pika-fly"
+      />
+      <img
+        src="assets/images/effects/pika_run.gif"
+        alt="Running Pikachu"
+        class="pika-run"
+      />
+      <img
+        src="assets/images/effects/charizard.gif"
+        alt="Charizard"
+        class="charizard-fly"
+      />
+    </div>
+
+    <div class="container">
+      <header class="header">
+        <h1 class="title">👽 ตัวแปลงตัวเลขมนุษย์ต่างดาว</h1>
+        <p class="subtitle">แปลงตัวเลขลึกลับของมนุษย์ต่างดาวเป็นตัวเลขธรรมดา</p>
+      </header>
+
+      <div class="reference-card">
+        <h3>ตารางสัญลักษณ์และค่า</h3>
+        <div class="symbols-grid">
+          <div class="symbol-item">
+            <span class="symbol">A</span>
+            <span class="value">1</span>
+          </div>
+          <div class="symbol-item">
+            <span class="symbol">B</span>
+            <span class="value">5</span>
+          </div>
+          <div class="symbol-item">
+            <span class="symbol">Z</span>
+            <span class="value">10</span>
+          </div>
+          <div class="symbol-item">
+            <span class="symbol">L</span>
+            <span class="value">50</span>
+          </div>
+          <div class="symbol-item">
+            <span class="symbol">C</span>
+            <span class="value">100</span>
+          </div>
+          <div class="symbol-item">
+            <span class="symbol">D</span>
+            <span class="value">500</span>
+          </div>
+          <div class="symbol-item">
+            <span class="symbol">R</span>
+            <span class="value">1000</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="converter-card">
+        <div class="input-section">
+          <label for="alien-input" class="input-label"
+            >ใส่ตัวเลขมนุษย์ต่างดาว</label
+          >
+          <input
+            type="text"
+            id="alien-input"
+            class="alien-input"
+            placeholder="ตัวอย่าง: RCRZCAB"
+            maxlength="20"
+          />
+          <button id="convert-btn" class="convert-btn">🚀 แปลงเลย!</button>
+        </div>
+
+        <div class="result-section">
+          <div class="result-display" id="result-display">
+            <span class="result-label">ผลลัพธ์:</span>
+            <span class="result-value" id="result-value">-</span>
+          </div>
+          <div class="breakdown" id="breakdown"></div>
+        </div>
+      </div>
+
+      <div class="examples-card">
+        <h3>ตัวอย่างการใช้งาน</h3>
+        <div class="examples-grid">
+          <div class="example-item" data-example="AAA">
+            <span class="example-input">AAA</span>
+            <span class="example-arrow">→</span>
+            <span class="example-output">3</span>
+          </div>
+          <div class="example-item" data-example="LBAAA">
+            <span class="example-input">LBAAA</span>
+            <span class="example-arrow">→</span>
+            <span class="example-output">58</span>
+          </div>
+          <div class="example-item" data-example="RCRZCAB">
+            <span class="example-input">RCRZCAB</span>
+            <span class="example-arrow">→</span>
+            <span class="example-output">1994</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="rules-card">
+        <h3>🧠 กฎการลบของมนุษย์ต่างดาว</h3>
+        <div class="explanation-text">
+          <p>
+            <strong>เคล็ดลับ:</strong> บางครั้งมนุษย์ต่างดาวจะใช้วิธีลบแทนบวก
+            เพื่อให้เขียนได้สั้นลง!
+          </p>
+        </div>
+        <ul class="rules-list">
+          <li>
+            <strong>A</strong> ถ้าอยู่หน้า <strong>B</strong> (5) หรือ
+            <strong>Z</strong> (10) จะกลายเป็น 4 และ 9
+          </li>
+          <li>
+            <strong>Z</strong> ถ้าอยู่หน้า <strong>L</strong> (50) หรือ
+            <strong>C</strong> (100) จะกลายเป็น 40 และ 90
+          </li>
+          <li>
+            <strong>C</strong> ถ้าอยู่หน้า <strong>D</strong> (500) หรือ
+            <strong>R</strong> (1000) จะกลายเป็น 400 และ 900
+          </li>
+        </ul>
+        <div class="example-explanation">
+          <p>
+            <strong>ตัวอย่าง:</strong> AB = 4 (เพราะ A อยู่หน้า B จึงหมายถึง
+            5-1=4)
+          </p>
+          <p>
+            <strong>ตัวอย่าง:</strong> AZ = 9 (เพราะ A อยู่หน้า Z จึงหมายถึง
+            10-1=9)
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual Equalizer Soundbar -->
+    <div class="equalizer-box" id="equalizer-box" title="กดเพื่อเล่น/หยุดเพลง">
+      <span class="equalizer-line"></span>
+      <span class="equalizer-line"></span>
+      <span class="equalizer-line"></span>
+      <span class="equalizer-line"></span>
+      <span class="equalizer-line"></span>
+    </div>
+
+    <!-- เสียงเอฟเฟกต์สำหรับการกดปุ่ม -->
+    <audio id="click-sound" preload="auto">
+      <source src="assets/sounds/fx/click.ogg" type="audio/ogg" />
+    </audio>
+
+    <!-- เพลงพื้นหลัง -->
+    <audio id="background-music" loop preload="auto">
+      <source src="assets/sounds/music/pikachu_beach.ogg" type="audio/ogg" />
+    </audio>
+
+    <script src="converter.js"></script>
+  </body>
+</html>

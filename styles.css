@@ -1,0 +1,730 @@
+/* รีเซ็ตค่าพื้นฐานของทุก element */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* โหลดฟอนต์พิกเซลสไตล์ Pokemon */
+@font-face {
+    font-family: 'PixelFont';
+    src: url('assets/fonts/NeuePixel-Regular.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'PixelRound';
+    src: url('assets/fonts/NeuePixel-Round-2.woff') format('woff');
+}
+
+/* สไตล์หลักของ body - พื้นหลัง Pokemon และฟอนต์พิกเซล */
+body {
+    font-family: 'PixelFont', 'Courier New', monospace;
+    background: url('assets/images/bg/bg1.webp') center/cover no-repeat;
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* เอฟเฟกต์ดาวลอยในพื้นหลัง */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('assets/images/bg/particles/stars_1.gif') repeat;
+    opacity: 0.3;
+    z-index: -2;
+    animation: float-stars 20s linear infinite;
+}
+
+/* อนิเมชันดาวลอยขึ้นลง */
+@keyframes float-stars {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100px); }
+}
+
+/* คอนเทนเนอร์หลักสำหรับจัดเรียงเนื้อหา */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+}
+
+/* ส่วนหัวของแอพพลิเคชัน */
+.header {
+    text-align: center;
+    padding: 30px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+}
+
+/* หัวเรื่องหลักพร้อมเอฟเฟกต์ไล่สี */
+.title {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #ff6b6b, #feca57, #48cae4, #ff6b6b);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: gradient-shift 3s ease-in-out infinite;
+    margin-bottom: 10px;
+}
+
+/* คำอธิบายใต้หัวเรื่อง */
+.subtitle {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+}
+
+/* อนิเมชันไล่สีสำหรับหัวเรื่อง */
+@keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+}
+
+/* สไตล์การ์ดหลักทั้งหมด - ลุคโปร่งใสสวยงาม */
+.reference-card,
+.converter-card,
+.examples-card,
+.rules-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* เอฟเฟกต์ hover สำหรับการ์ดทั้งหมด */
+.reference-card:hover,
+.converter-card:hover,
+.examples-card:hover,
+.rules-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* หัวข้อสำหรับการ์ดย่อยต่างๆ */
+.reference-card h3,
+.examples-card h3,
+.rules-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #4a5568;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ตารางแสดงสัญลักษณ์และค่า */
+.symbols-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+/* สัญลักษณ์แต่ละตัวในตาราง */
+.symbol-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 12px;
+    color: white;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+/* เอฟเฟกต์ hover สำหรับสัญลักษณ์ */
+.symbol-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* ตัวอักษรสัญลักษณ์ */
+.symbol {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* ค่าตัวเลข */
+.value {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+/* ส่วนของการแปลงค่า */
+.input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.input-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #4a5568;
+    margin-bottom: 5px;
+}
+
+.alien-input {
+    padding: 15px 20px;
+    font-size: 1.2rem;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    background: white;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.alien-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    transform: translateY(-2px);
+}
+
+.alien-input.invalid {
+    border-color: #f56565;
+    background: #fed7d7;
+}
+
+.alien-input.error {
+    border-color: #e53e3e;
+    background: #fed7d7;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.convert-btn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.convert-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+.convert-btn:active {
+    transform: translateY(0);
+}
+
+/* Result Section */
+.result-section {
+    text-align: center;
+}
+
+.result-display {
+    background: linear-gradient(135deg, #48cae4, #0077b6);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.result-label {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.result-value {
+    font-size: 2rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.result-value.animate-result {
+    animation: pulse-scale 0.6s ease-in-out;
+}
+
+@keyframes pulse-scale {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.breakdown {
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.breakdown-content {
+    background: #f7fafc;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+}
+
+.breakdown-label {
+    font-weight: 600;
+    color: #4a5568;
+    margin-right: 10px;
+}
+
+.breakdown-item {
+    font-weight: 500;
+    margin: 0 2px;
+}
+
+.breakdown-item.add {
+    color: #38a169;
+}
+
+.breakdown-item.subtract {
+    color: #e53e3e;
+}
+
+.error-message {
+    color: #e53e3e;
+    font-weight: 500;
+    padding: 10px;
+    background: #fed7d7;
+    border-radius: 8px;
+    border-left: 4px solid #e53e3e;
+}
+
+/* Examples Section */
+.examples-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.example-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    background: linear-gradient(135deg, #feca57, #ff9ff3);
+    border-radius: 12px;
+    color: #2d3748;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.example-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(254, 202, 87, 0.4);
+}
+
+.example-item.clicked {
+    transform: scale(0.95);
+    box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.example-input {
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.example-arrow {
+    font-size: 1.2rem;
+    margin: 0 10px;
+}
+
+.example-output {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Rules Section */
+.rules-list {
+    list-style: none;
+    padding: 0;
+}
+
+.rules-list li {
+    padding: 12px 0;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.rules-list li:last-child {
+    border-bottom: none;
+}
+
+.rules-list strong {
+    color: #667eea;
+    font-weight: 700;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+
+    .subtitle {
+        font-size: 1rem;
+    }
+
+    .symbols-grid {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 10px;
+    }
+
+    .symbol {
+        font-size: 1.4rem;
+    }
+
+    .alien-input {
+        font-size: 1rem;
+        padding: 12px 15px;
+    }
+
+    .convert-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .result-value {
+        font-size: 1.5rem;
+    }
+
+    .examples-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* อนิเมชัน Pokemon ลอยในพื้นหลัง */
+.floating-pokemon {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Pikachu บินลอยด้านขวา */
+.pika-fly {
+    position: absolute;
+    top: 15%;
+    right: 10%;
+    width: 120px;
+    height: auto;
+    animation: float-right 15s ease-in-out infinite;
+    filter: drop-shadow(3px 3px 6px rgba(0,0,0,0.3));
+}
+
+/* Pikachu วิ่งข้ามจอ */
+.pika-run {
+    position: absolute;
+    bottom: 25%;
+    left: -150px;
+    width: 100px;
+    height: auto;
+    animation: run-across 20s linear infinite;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+/* Charizard บินวนรอบด้านบน */
+.charizard-fly {
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    width: 150px;
+    height: auto;
+    animation: fly-around 25s ease-in-out infinite;
+    filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.4));
+}
+
+/* อนิเมชัน Pikachu ลอยขวา */
+@keyframes float-right {
+    0%, 100% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0.8;
+    }
+    25% {
+        transform: translateY(-20px) translateX(-30px) rotate(-5deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(-40px) translateX(-60px) rotate(0deg);
+        opacity: 0.9;
+    }
+    75% {
+        transform: translateY(-20px) translateX(-30px) rotate(5deg);
+        opacity: 1;
+    }
+}
+
+/* อนิเมชัน Pikachu วิ่งข้ามจอและพลิกกลับ */
+@keyframes run-across {
+    0% {
+        left: -150px;
+        transform: scaleX(1);
+    }
+    48% {
+        transform: scaleX(1);
+    }
+    50% {
+        left: 50%;
+        transform: scaleX(-1);
+    }
+    100% {
+        left: calc(100% + 150px);
+        transform: scaleX(-1);
+    }
+}
+
+/* อนิเมชัน Charizard บินวนรอบ */
+@keyframes fly-around {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 0.7;
+    }
+    25% {
+        transform: translate(200px, 50px) rotate(10deg);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(400px, -30px) rotate(-5deg);
+        opacity: 0.8;
+    }
+    75% {
+        transform: translate(200px, 30px) rotate(15deg);
+        opacity: 1;
+    }
+}
+
+/* อัพเดตสไตล์การ์ดให้เป็นแบบพิกเซล */
+.reference-card,
+.converter-card,
+.examples-card,
+.rules-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 0px; /* ขอบแหลมสี่เหลี่ยมแบบพิกเซล */
+    padding: 25px;
+    box-shadow:
+        0 0 0 3px #000,
+        3px 3px 0 0 #666,
+        inset 0 0 20px rgba(255,255,255,0.3);
+    border: 3px solid #333;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'PixelFont', monospace;
+}
+
+/* หัวเรื่องสไตล์พิกเซลสีทอง */
+.title {
+    font-family: 'PixelRound', 'PixelFont', monospace;
+    font-size: 3rem;
+    font-weight: normal;
+    text-shadow: 3px 3px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+    color: #FFD700;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 20px 15px;
+    }
+
+    .reference-card,
+    .converter-card,
+    .examples-card,
+    .rules-card {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 1.8rem;
+    }
+
+    .symbols-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* สไตล์สำหรับข้อความภาษาไทย */
+.explanation-text {
+    background: rgba(255, 235, 59, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border-left: 4px solid #FF6B35;
+}
+
+/* กล่องตัวอย่างเพิ่มเติม */
+.example-explanation {
+    background: rgba(76, 175, 80, 0.1);
+    padding: 12px;
+    border-radius: 6px;
+    margin-top: 10px;
+    border-left: 3px solid #4CAF50;
+}
+
+/* สไตล์ข้อความภายในกล่อง */
+.explanation-text p, .example-explanation p {
+    margin: 5px 0;
+    line-height: 1.6;
+}
+
+/* Visual Equalizer Soundbar */
+.equalizer-box {
+    position: fixed;
+    top: 4rem;
+    left: 7rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1000;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.equalizer-box:hover {
+    transform: scale(1.05);
+}
+
+/* แต่ละแท่ง equalizer */
+.equalizer-line {
+    background: #FFD700;
+    height: 1rem;
+    width: 2px;
+    margin: 0 0.1rem;
+    animation: equalizer-play 1s ease infinite;
+    animation-play-state: paused;
+    border-radius: 2px;
+    box-shadow: 0 0 4px rgba(255, 215, 0, 0.5);
+}
+
+/* Animation delays สำหรับแต่ละแท่ง */
+.equalizer-line:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.equalizer-line:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.equalizer-line:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.equalizer-line:nth-child(4) {
+    animation-delay: 0.5s;
+}
+
+.equalizer-line:nth-child(5) {
+    animation-delay: 0.8s;
+}
+
+/* เมื่อเพลงกำลังเล่น */
+.equalizer-line.running {
+    animation-play-state: running;
+}
+
+/* Animation สำหรับการเต้นของแท่ง */
+@keyframes equalizer-play {
+    0% {
+        transform: scaleY(1);
+        background: #FFD700;
+    }
+
+    25% {
+        transform: scaleY(1.5);
+        background: #FFA500;
+    }
+
+    50% {
+        transform: scaleY(2.5);
+        background: #FF6B35;
+    }
+
+    75% {
+        transform: scaleY(1.8);
+        background: #FFA500;
+    }
+
+    100% {
+        transform: scaleY(1);
+        background: #FFD700;
+    }
+}
+
+/* Responsive สำหรับ mobile */
+@media (max-width: 768px) {
+    .equalizer-box {
+        top: 2rem;
+        left: 2rem;
+        padding: 8px;
+    }
+
+    .equalizer-line {
+        height: 0.8rem;
+        width: 1.5px;
+        margin: 0 0.08rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pika-fly, .charizard-fly {
+        width: 80px;
+    }
+
+    .pika-run {
+        width: 70px;
+    }
+
+    .soundbar {
+        padding: 6px 12px;
+    }
+
+    .music-controls {
+        gap: 8px;
+    }
+
+    .volume-slider {
+        width: 50px;
+    }
+
+    .song-info {
+        font-size: 9px;
+        min-width: 60px;
+    }
+}
