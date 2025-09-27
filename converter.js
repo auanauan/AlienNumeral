@@ -142,6 +142,43 @@ class AlienUI {
                 }
             });
         });
+        // จัดการ Help Modal
+        this.bindModalEvents();
+    }
+
+    bindModalEvents() {
+        const modal = document.getElementById('help-modal');
+        const helpBtn = document.getElementById('help-btn');
+        const closeBtn = document.querySelector('.close');
+
+        // เปิด modal เมื่อคลิกปุ่ม help
+        if (helpBtn) {
+            helpBtn.addEventListener('click', () => {
+                this.playClickSound();
+                modal.style.display = 'block';
+            });
+        }
+
+        // ปิด modal เมื่อคลิก X
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+        }
+
+        // ปิด modal เมื่อคลิกพื้นหลัง
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+
+        // ปิด modal เมื่อกด Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modal.style.display === 'block') {
+                modal.style.display = 'none';
+            }
+        });
     }
     // เล่นเสียงคลิกเมื่อมีการกดปุ่ม
     playClickSound() {

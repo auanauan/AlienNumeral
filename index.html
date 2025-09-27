@@ -119,39 +119,6 @@
         </div>
       </div>
 
-      <div class="rules-card">
-        <h3>🧠 กฎการลบของมนุษย์ต่างดาว</h3>
-        <div class="explanation-text">
-          <p>
-            <strong>เคล็ดลับ:</strong> บางครั้งมนุษย์ต่างดาวจะใช้วิธีลบแทนบวก
-            เพื่อให้เขียนได้สั้นลง!
-          </p>
-        </div>
-        <ul class="rules-list">
-          <li>
-            <strong>A</strong> ถ้าอยู่หน้า <strong>B</strong> (5) หรือ
-            <strong>Z</strong> (10) จะกลายเป็น 4 และ 9
-          </li>
-          <li>
-            <strong>Z</strong> ถ้าอยู่หน้า <strong>L</strong> (50) หรือ
-            <strong>C</strong> (100) จะกลายเป็น 40 และ 90
-          </li>
-          <li>
-            <strong>C</strong> ถ้าอยู่หน้า <strong>D</strong> (500) หรือ
-            <strong>R</strong> (1000) จะกลายเป็น 400 และ 900
-          </li>
-        </ul>
-        <div class="example-explanation">
-          <p>
-            <strong>ตัวอย่าง:</strong> AB = 4 (เพราะ A อยู่หน้า B จึงหมายถึง
-            5-1=4)
-          </p>
-          <p>
-            <strong>ตัวอย่าง:</strong> AZ = 9 (เพราะ A อยู่หน้า Z จึงหมายถึง
-            10-1=9)
-          </p>
-        </div>
-      </div>
     </div>
 
     <!-- Visual Equalizer Soundbar -->
@@ -172,6 +139,61 @@
     <audio id="background-music" loop preload="auto">
       <source src="assets/sounds/music/pikachu_beach.ogg" type="audio/ogg" />
     </audio>
+
+    <!-- Help Modal -->
+    <div id="help-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>🧠 วิธีการใช้งาน</h3>
+          <span class="close">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div class="explanation-text">
+            <p>
+              <strong>เคล็ดลับ:</strong> บางครั้งมนุษย์ต่างดาวจะใช้วิธีลบแทนบวก
+              เพื่อให้เขียนได้สั้นลง!
+            </p>
+          </div>
+          <ul class="rules-list">
+            <li>
+              <strong>A</strong> ถ้าอยู่หน้า <strong>B</strong> (5) หรือ
+              <strong>Z</strong> (10) จะกลายเป็น 4 และ 9
+            </li>
+            <li>
+              <strong>Z</strong> ถ้าอยู่หน้า <strong>L</strong> (50) หรือ
+              <strong>C</strong> (100) จะกลายเป็น 40 และ 90
+            </li>
+            <li>
+              <strong>C</strong> ถ้าอยู่หน้า <strong>D</strong> (500) หรือ
+              <strong>R</strong> (1000) จะกลายเป็น 400 และ 900
+            </li>
+          </ul>
+          <div class="example-explanation">
+            <p>
+              <strong>ตัวอย่าง:</strong> AB = 4 (เพราะ A อยู่หน้า B จึงหมายถึง
+              5-1=4)
+            </p>
+            <p>
+              <strong>ตัวอย่าง:</strong> AZ = 9 (เพราะ A อยู่หน้า Z จึงหมายถึง
+              10-1=9)
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Social Icons in Bottom Right -->
+    <div class="social-icons">
+      <a href="https://github.com/auanauan" target="_blank" class="social-icon">
+        <img src="assets/images/icons/github_2.png" alt="GitHub" />
+      </a>
+      <a href="https://linkedin.com/in/thanakrit-mangkang-298a7b211" target="_blank" class="social-icon">
+        <img src="assets/images/icons/linkedin.png" alt="LinkedIn" />
+      </a>
+      <button id="help-btn" class="help-button social-icon" title="คลิกเพื่อดูกฎการลบของมนุษย์ต่างดาว">
+        <img src="assets/images/icons/question_color.png" alt="Help" />
+      </button>
+    </div>
 
     <script src="converter.js"></script>
   </body>
