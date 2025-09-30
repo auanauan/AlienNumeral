@@ -231,7 +231,7 @@ body::before {
 /* คำอธิบายใต้หัวเรื่อง */
 .subtitle {
     font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: #7D387D;
     font-weight: 300;
 }
 
